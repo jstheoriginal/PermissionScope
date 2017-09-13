@@ -1331,8 +1331,6 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
             permissionStatus = statusNotifications()
         case .microphone:
             permissionStatus = statusMicrophone()
-        case .notifications:
-            permissionStatus = statusNotifications()
         case .camera:
             permissionStatus = statusCamera()
         case .photos:
