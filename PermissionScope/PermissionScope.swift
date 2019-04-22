@@ -311,7 +311,10 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
 
         button.setTitle("Allow \(type)".localized.uppercased(), for: .normal)
         
-        button.addTarget(self, action: Selector("request\(type)"), for: .touchUpInside)
+        switch type {
+        case .notifications:
+            button.addTarget(self, action: #selector(requestNotifications), for: .touchUpInside)
+        }
 
         button.accessibilityIdentifier = "permissionscope.button.\(type)".lowercased()
         
@@ -443,7 +446,7 @@ typealias resultsForConfigClosure     = ([PermissionResult]) -> Void
     /**
     Requests access to User Notifications, if necessary.
     */
-    public func requestNotifications() {
+    @objc public func requestNotifications() {
         let status = statusNotifications()
         switch status {
         case .unknown:
